@@ -2,3 +2,4 @@ pandas
 matplotlib
 huggingface_hub
 ipykernel
+scikit-learn
