@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Editör / araç klasörleri
+.vscode/
+.idea/
+
+# Veri (büyük dosyalar, kodla yeniden indirilebilir)
+data/
