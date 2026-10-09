@@ -1,11 +1,13 @@
 """Eğitilmiş modeli ONNX'e çevirir, int8'e sıkıştırır ve sonuçların aynı kaldığını kontrol eder.
 
-Çalıştırma (proje klasöründen):  python scripts/export_onnx.py
-Çıktı: models/electra-sentiment/onnx/model.onnx           (float32)
-       models/electra-sentiment/onnx/model_quantized.onnx (int8)
+Çalıştırma (proje klasöründen):  python scripts/export_onnx.py [model klasörü]
+Varsayılan klasör: models/electra-sentiment-v2
+Çıktı: <model klasörü>/onnx/model.onnx           (float32)
+       <model klasörü>/onnx/model_quantized.onnx (int8)
 """
 
 import os
+import sys
 import time
 
 import numpy as np
@@ -15,7 +17,7 @@ import torch
 from onnxruntime.quantization import QuantType, quantize_dynamic
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-MODEL_DIR = "models/electra-sentiment"
+MODEL_DIR = sys.argv[1] if len(sys.argv) > 1 else "models/electra-sentiment-v2"
 ONNX_DIR = f"{MODEL_DIR}/onnx"
 FP32 = f"{ONNX_DIR}/model.onnx"
 INT8 = f"{ONNX_DIR}/model_quantized.onnx"
