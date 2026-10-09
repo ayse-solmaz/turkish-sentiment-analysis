@@ -9,3 +9,6 @@ __pycache__/
 
 # Veri (büyük dosyalar, kodla yeniden indirilebilir)
 data/
+
+# Eğitilmiş modeller (büyük dosyalar)
+models/
