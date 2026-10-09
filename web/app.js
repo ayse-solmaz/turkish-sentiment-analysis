@@ -1,11 +1,13 @@
 // Transformers.js: Hugging Face modellerini tarayıcıda ONNX Runtime Web ile çalıştırır.
 import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.1';
 
-// Modeli internetten değil, kendi sunucumuzdaki /models/ klasöründen yükle.
-env.allowRemoteModels = false;
-env.allowLocalModels = true;
+// Kendi bilgisayarımızda (localhost) modeli /models/ klasöründen, canlıda Hugging Face'ten yükle.
+const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+const HF_MODEL = 'KULLANICI_ADINIZ/turkish-sentiment-electra-small';
+const MODEL = LOCAL ? 'electra-sentiment' : HF_MODEL;
+env.allowLocalModels = LOCAL;
+env.allowRemoteModels = !LOCAL;
 env.localModelPath = '/models/';
-const MODEL = 'electra-sentiment';
 
 const LABELS = {
   Positive: { name: 'Olumlu', color: 'var(--pos)' },
