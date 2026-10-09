@@ -4,7 +4,9 @@ import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transfo
 // Kendi bilgisayarımızda (localhost) modeli /models/ klasöründen, canlıda Hugging Face'ten yükle.
 const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
 const HF_MODEL = 'ayse-solmaz/turkish-sentiment-electra-small';
-const MODEL = LOCAL ? 'electra-sentiment' : HF_MODEL;
+// Hugging Face'teki sürüm etiketi. Yeni model yüklenince burayı değiştir: tarayıcı önbelleğindeki eski model kullanılmaz.
+const HF_REVISION = 'v2';
+const MODEL = LOCAL ? 'electra-sentiment-v2' : HF_MODEL;
 env.allowLocalModels = LOCAL;
 env.allowRemoteModels = !LOCAL;
 env.localModelPath = '/models/';
@@ -28,7 +30,11 @@ function parse(value) {
 async function load(value) {
   const { device, dtype } = parse(value);
   const t = performance.now();
-  const model = await pipeline('text-classification', MODEL, { device, dtype });
+  const model = await pipeline('text-classification', MODEL, {
+    device,
+    dtype,
+    ...(LOCAL ? {} : { revision: HF_REVISION }),
+  });
   return { model, ms: performance.now() - t };
 }
 
