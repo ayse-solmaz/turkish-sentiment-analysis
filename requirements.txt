@@ -5,3 +5,5 @@ ipykernel
 scikit-learn
 torch
 transformers
+onnx
+onnxruntime
