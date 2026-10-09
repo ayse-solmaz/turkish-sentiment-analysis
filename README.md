@@ -2,7 +2,9 @@
 
 Türkçe metinleri **olumlu / olumsuz / nötr** olarak sınıflandıran, tamamen **tarayıcıda** (WebGPU veya WASM) çalışan bir model. Metin hiçbir sunucuya gönderilmez.
 
-**🔗 Canlı demo:** _yakında_
+**🔗 Canlı demo:** https://ayse-solmaz.github.io/turkish-sentiment-analysis/
+
+**🤗 Model:** https://huggingface.co/ayse-solmaz/turkish-sentiment-electra-small
 
 Proje uçtan uca bir ML hattıdır: veri analizi → baseline → fine-tuning → ONNX + int8 quantization → tarayıcıda çıkarım ve ölçüm.
 

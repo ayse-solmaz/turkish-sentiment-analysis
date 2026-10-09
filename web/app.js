@@ -3,7 +3,7 @@ import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transfo
 
 // Kendi bilgisayarımızda (localhost) modeli /models/ klasöründen, canlıda Hugging Face'ten yükle.
 const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
-const HF_MODEL = 'KULLANICI_ADINIZ/turkish-sentiment-electra-small';
+const HF_MODEL = 'ayse-solmaz/turkish-sentiment-electra-small';
 const MODEL = LOCAL ? 'electra-sentiment' : HF_MODEL;
 env.allowLocalModels = LOCAL;
 env.allowRemoteModels = !LOCAL;
